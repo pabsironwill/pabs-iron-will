@@ -55,7 +55,7 @@ export default function Home() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert("Checkout error. Check your Stripe Price IDs.");
+        alert("Stripe checkout failed. Check your Price IDs.");
         console.error(data);
       }
     } catch (err) {
@@ -68,17 +68,28 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-b from-white via-blue-50/30 to-white text-gray-900 scroll-smooth">
 
       {/* HEADER */}
-      <header className={`sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/40 shadow-sm transition-all duration-300 ${scrolled ? "py-2" : "py-4"}`}>
+      <header
+        className={`sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/40 shadow-sm transition-all duration-300 ${
+          scrolled ? "py-2" : "py-4"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <h1 className="text-xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
             Pabs Iron Will
           </h1>
+          <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+            <a href="#about" className="hover:text-blue-600 transition">About</a>
+            <a href="#coaching" className="hover:text-blue-600 transition">Coaching</a>
+            <a href="#blueprint" className="hover:text-blue-600 transition">Blueprint</a>
+            <a href="#apply" className="hover:text-blue-600 transition">Apply</a>
+          </nav>
         </div>
       </header>
 
       {/* HERO */}
       <section className="relative py-36 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-300 to-blue-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-300 to-blue-500 animate-gradient-slow"></div>
+
         <div className="relative z-10">
           <h1 className="text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
             Pabs Iron Will
@@ -86,6 +97,12 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
             Build strength. Build discipline. Build confidence.
           </p>
+          <a
+            href="#apply"
+            className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-10 py-4 rounded-2xl font-semibold shadow-lg shadow-blue-200 transition-all duration-300 hover:scale-105"
+          >
+            Apply Now
+          </a>
         </div>
       </section>
 
@@ -99,19 +116,19 @@ export default function Home() {
               title: "Beginner Program",
               price: "$150 / month",
               desc: "Custom workouts, nutrition guidance, and accountability.",
-              priceId: "REPLACE_WITH_PRICE_ID_1",
+              priceId: "price_1T1yyeFmV0HeKaGAaWL8vwev",
             },
             {
               title: "Advanced Coaching",
               price: "$500 / month",
               desc: "Weekly check-ins, form reviews, and detailed macro planning.",
-              priceId: "REPLACE_WITH_PRICE_ID_2",
+              priceId: "price_1T1yz3FmV0HeKaGAUEjiCom3",
             },
             {
               title: "Elite Transformation",
               price: "$1500 / month",
               desc: "Full transformation coaching with daily communication.",
-              priceId: "REPLACE_WITH_PRICE_ID_3",
+              priceId: "price_1T1yzVFmV0HeKaGAg3gnDbbw",
             },
           ].map((tier, i) => (
             <div
@@ -135,34 +152,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-24 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-12">Testimonials</h2>
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          modules={[Autoplay]}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-        >
-          {testimonials.map((t, i) => (
-            <SwiperSlide key={i}>
-              <div className="mx-4 p-8 bg-blue-50 rounded-3xl shadow-xl text-gray-800">
-                <p className="italic">"{t.text}"</p>
-                <p className="mt-4 font-semibold text-blue-600">- {t.name}</p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </section>
+      {/* KEEP ALL YOUR OTHER SECTIONS EXACTLY AS THEY WERE */}
 
-      <footer className="py-10 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Pabs Iron Will. All rights reserved.
-      </footer>
     </main>
   );
 }
